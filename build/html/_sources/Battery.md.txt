@@ -1,0 +1,4 @@
+## 电池电压(Battery)
+
+### 方法
+Battery_init()

@@ -1,0 +1,350 @@
+<h1>18. 自动行驶小车：24年电赛H题</h1>
+
+[TOC]
+
+## 题目要求
+
+<img src="F:\18. 自动行驶小车：24年电赛H题\中文\pic1.png" alt="img" style="zoom: 80%;" />
+
+<img src="F:\18. 自动行驶小车：24年电赛H题\中文\pic2.png" alt="img" style="zoom: 80%;" />
+
+**完整题目链接**
+
+```
+https://res.nuedc-training.com.cn/topic/2024/topic_116.html
+```
+
+## 四路巡线
+
+### 硬件连接
+
+| 四路巡线模块对应LED | 四路巡线模块 | 开发板  |
+| :------------------ | ------------ | ------- |
+|                     | VCC          | 5V/3.3V |
+| L1                  | X1           | PC4     |
+| L2                  | X2           | PC5     |
+| L3                  | X3           | PB0     |
+| L4                  | X4           | PB1     |
+|                     | GND          | GND     |
+
+### 控制原理
+
+通过读取四路循迹模块的X1、X2、X3、X4接口电平判断是否检测到黑线以及黑线所在位置。
+
+```
+程序使用PID实现巡线功能，若不使用PID参数，效果较差
+```
+
+![image-20240816112132769](F:\18. 自动行驶小车：24年电赛H题\中文\image-20240816112132769.png)
+
+> **检测到黑线**
+
+灯亮 → 四路巡线模块对应接口输出低电平；
+
+> **检测到白线**
+
+灯灭 → 四路巡线模块对应接口输出高电平。
+
+```
+注意：接口、LED、调节旋钮对应关系以丝印数字为准，例如：X1对应L1、SW1
+```
+
+### MPU6050 偏航角Yaw示意图
+
+<img src="F:\18. 自动行驶小车：24年电赛H题\中文\6050.png" alt="image-20241011103322927" style="zoom: 50%;" />
+
+
+
+
+
+## 解题思路与参考代码
+
+### 第 (1) 题
+
+**问题**
+
+由于电机自身转速、地面摩擦等因素，给定左右电机同样的PWM值时，电机转动的圈速不一定相同，导致小车前进方向不直
+
+**解题思路**
+
+使用MPU6050传感器读取小车偏航角Yaw值，添加方向控制环PID修正小车前进的方向
+
+**流程图**
+
+<img src="F:\18. 自动行驶小车：24年电赛H题\中文\process1.png" alt="image-20241011103933384"  />
+
+**参考代码**
+
+```c++
+    // main.c
+	Stop_Flag = 0;
+    sprintf(showbuf,"%d %d %d %d",IN_X2,IN_X1,IN_X3,IN_X4);
+    OLED_Draw_Line(showbuf, 1, true, true);
+    // 小车运行的时间区间，需要根据实际情况设置
+    int timer_count_min = 300;
+    int timer_count_max = 700;
+    if((IN_X1==0 || IN_X3==0 || IN_X2==0 || IN_X4==0 || timer_count>timer_count_max) && timer_count>timer_count_min){
+        go_front = false;
+        running_mode = RUNNING_MODE_STOP;
+        BEEP_BEEP = 1;
+        delay_time(150);
+        BEEP_BEEP = 0;
+    }
+
+
+	// app_tracking.c
+	// 转向控制环PID
+    int Keep_turn_front_PD(float gyro, float direction)
+    {
+
+        int KTF_Turn = 0;
+        float err = 0;	
+        static float KTF_Integral;
+        // MPU6050产生的误差，需要根据实际情况修改
+        yaw_fix = -0.4;
+        err = (-1)*getDelta(Yaw + yaw_fix, direction);
+        KTF_Integral += err;
+        KTF_Turn = err*KF_Trun_KP+KF_Trun_KI*KTF_Integral+gyro*KF_Trun_KD;
+        return KTF_Turn;
+    }
+	// 旋转角计算
+    float getDelta(float now, float target){
+        float dt = target-now;
+        
+        // MPU6050的Yaw角度数范围为[-180~180]，顺时针方向角度减小，180度和-180度方向为同一方向
+        if (dt > 180) dt -= 360;
+        else if (dt < -180) dt += 360;
+
+        return dt>=180?(360-dt):(dt<=-180?dt+360:dt);
+
+    }
+```
+
+### 第 (2) 题
+
+**解题思路**
+
+空白路径部分（D->C、B->A段）使用第一问的方案，D->C段和B->A设定相反的前进方向
+寻迹部分参考小车寻迹篇的教程，需要根据实际情况调整寻迹部分PID的值
+
+**流程图**
+
+<img src="F:\18. 自动行驶小车：24年电赛H题\中文\process2.png" alt="image-20241011104900191"  />
+
+
+
+**参考代码**
+
+```c++
+    // 用局部变量 point_count记录端点数，初始为1
+    static int point_count = 1;
+    static int last_in_x1=-1,last_in_x2=-1,last_in_x3=-1,last_in_x4=-1;
+	IRTrack_Trun_KP = 250;
+    // D -> C段 空白 直接照搬第一题 区别是running_mode不设为STOP
+    // C -> B段 寻迹 
+    // B -> A段 空白 yaw_font 翻转, go_front=true
+    Stop_Flag = 0;
+    sprintf(showbuf, "Point: %d", point_count);
+    OLED_Draw_Line(showbuf, 2, true, true);
+    if((IN_X1==0 && IN_X3==0 && last_in_x1!=0 && last_in_x3!=0) && timer_count>200){
+        go_front = false;
+        BEEP_BEEP = 1;
+        delay_time(10);
+        BEEP_BEEP = 0;
+        point_count++;
+    }
+    else if(IN_X1==1 && IN_X3==1 && IN_X2==1 && IN_X4==1
+            && (last_in_x1==0 || last_in_x3==0)
+    ){
+        if(point_count == 2){
+            BEEP_BEEP = 1;
+       	 	delay_time(10);
+            BEEP_BEEP = 0;
+            point_count = 3;
+            // 添加第三段空白的直线修正， 此修正值需要根据实际情况调整
+            float change_dir_fix = -1.55;
+            go_front_dir = change_direction_180(yaw_front)+change_dir_fix;
+            go_front = true;
+        }else if(point_count >= 4){
+            Stop_Flag = 1;
+            // running_mode == RUNNING_MODE_STOP;
+            BEEP_BEEP = 1;
+            delay_time(50);
+            BEEP_BEEP = 0;
+            delay_time(50);
+        }
+    }
+    // 误差修正, 如果小车没有笔直的进入
+    if((IN_X1==0 || IN_X2==0 || IN_X3==0 || IN_X4==0) && (timer_count - timer_count_recorder[point_count]) > 600){
+        if(go_front){
+            // 出现误差
+            go_front = false;
+            BEEP_BEEP = 1;
+            delay_time(100);
+            BEEP_BEEP = 0;
+            point_count++;
+        }
+    }
+    //////////// 结尾部分 //////////////////
+    last_in_x1 = IN_X1;
+    last_in_x2 = IN_X2;
+    last_in_x3 = IN_X3;
+    last_in_x4 = IN_X4;
+```
+
+### 第 (3)、(4) 题
+
+**解题思路**
+
+寻迹段参考小车寻迹的教程，为了提高精度，需要根据实际情况调整寻迹部分PID的值
+空白段需要实现两个步骤：定方向转弯和直走，通过第(1)题中的转向环PID实现
+
+```
+关于误差&参考解决方案：
+(1) MPU6050的Yaw读数存在较为严重的零点漂移问题(0~2度左右的漂移)
+	参考解决方案：
+	1. 等MPU6050初始化后读数相对稳定了再让小车标定正方向
+	2. 在转向时手动添加向内的角度偏差修正值，尽量让小车即使产生了向外的方向偏差，在角度修正值的作用下也不会跑出巡线轨迹。向内的偏差可以通过将寻迹部分PID的P参数值设为动态值来让小车修正到轨道上运行（详见完整代码）
+(2) 不同的小车机械结构以及外部环境带来的偏移
+	参考解决方案：
+	1. 记录小车运行情况，根据实际运行情况调整偏移量参数。具体调整的位置见参考代码的注释
+```
+
+**流程图**
+
+<img src="F:\18. 自动行驶小车：24年电赛H题\中文\process3.png" alt="image-20241011105435499"  />
+
+**参考代码**
+
+```c++
+    // 用局部变量 point_count记录端点数，初始为0
+    static int point_count = 0;
+    static int last_in_x1=0,last_in_x2=1,last_in_x3=0,last_in_x4=1;
+    Stop_Flag = 0;
+    sprintf(showbuf, "go_front_dir:%f ", go_front_dir);
+    OLED_Draw_Line(showbuf, 1, false, true);
+
+    // 动态转向环 Kp, 使得在刚进入寻迹轨道时转速低
+    // 为了小车寻迹效果需要保证在寻迹过程中有一个较大的Kp。
+    // 但是较大的Kp会导致 如果进入寻迹轨道前小车有向内偏差，根据寻迹的规则小车将大幅度向错误的方向旋转。
+    // 因此需要限制Kp在刚进入轨道时的大小
+    // 具体的变化函数以及参数需要根据实际情况调整
+    if((IRTrack_Trun_KP < DEFAULT_MAX_KP) && go_front==false){
+
+        // y = 0.018x^{2}
+        IRTrack_Trun_KP = 0.018*(timer_count - timer_count_recorder[point_count])*(timer_count - timer_count_recorder[point_count]);
+    }else if(IRTrack_Trun_KP > DEFAULT_MAX_KP){
+        IRTrack_Trun_KP = DEFAULT_MAX_KP;
+    }
+    if(IRTrack_Trun_KP < 0){
+        IRTrack_Trun_KP = 10;
+    }
+
+
+    // 第三题的初始状态是小车在线上
+    // 运行允许的时间区间请根据实际情况设定
+    if((IN_X1==1 && IN_X3==1 && IN_X2==1 && IN_X4==1
+            && (last_in_x1==0 || last_in_x3==0))
+            || (timer_count - timer_count_recorder[point_count]) > 878
+    ){
+        if(point_count==0 || (timer_count - timer_count_recorder[point_count]) > 600){
+            IRTrack_Trun_KP = 75;
+
+            // 误差修正偏移量(fix_degree)和初始的偏转角(base_degree)需要根据实际表现调整
+            // 尽量向内侧偏移，因为向内偏移可以修正，向外偏走出轨道了就很难修正了
+            // 一般情况下第一圈不需要调整
+            float fix_degree1 = 0;
+            float fix_degree2 = 0;
+            float base_degree1 = 35.95;
+            float base_degree2 = 35;
+            float val_1 = -4.5;
+            float val_2 = -2;
+            if((point_count)%4 == 0){
+                go_front = false;
+                if(point_count == 4){
+                    fix_degree1 = val_1;
+                }else if(point_count == 8){
+                    fix_degree1 = val_1;
+                }else if(point_count == 12){
+                    fix_degree1 = val_1;
+                }
+                go_front_dir = change_direction_any(yaw_front, -(base_degree1 + fix_degree1));
+                go_front = true;
+                point_count++;
+                timer_count_recorder[point_count] = timer_count;
+                BEEP_BEEP = 1;
+                delay_time(30);
+                BEEP_BEEP = 0;
+            }else if((point_count >= 2 && (point_count - 2) % 4 == 0)){	
+                go_front = false;
+                if(point_count == 6){
+                    fix_degree2 = val_2;
+                }else if(point_count == 10){
+                    fix_degree2 = val_2;
+                }else if(point_count == 14){
+                    fix_degree2 = val_2;
+                }
+                go_front_dir = change_direction_any(change_direction_180(yaw_front),(base_degree2 + fix_degree2));
+                go_front = true;
+                point_count++;
+                timer_count_recorder[point_count] = timer_count;
+                BEEP_BEEP = 1;
+                delay_time(30);
+                BEEP_BEEP = 0;
+            }
+
+            sprintf(showbuf2, "%.2f  %.2f %d", fix_degree1, fix_degree2, (point_count-1)%4);
+            OLED_Draw_Line(showbuf2, 3, false, true);
+        }
+
+    }else if(((last_in_x1==1 && last_in_x2==1 && last_in_x3==1 && last_in_x4==1) 
+            && (IN_X1 == 0 || IN_X2==0 || IN_X3==0 || IN_X4==0))
+            || timer_count - timer_count_recorder[point_count] > 900
+    ){
+        if(point_count==0 || timer_count - timer_count_recorder[point_count] > 700){
+            if((point_count % 2 != 0) && (point_count > 0)){
+                // 第二段 弧线 正常寻迹
+                go_front = false;
+                point_count++;
+                timer_count_recorder[point_count] = timer_count;
+                // IRTrack_Trun_KP = 150;
+                // 降低Kp
+                IRTrack_Trun_KP = 75;
+                BEEP_BEEP = 1;
+                delay_time(15);
+                BEEP_BEEP = 0;
+            }
+        }
+    }
+
+    // 四圈后停止
+    if(point_count >= 17){
+        Stop_Flag = 1;
+        // running_mode == RUNNING_MODE_STOP;
+        BEEP_BEEP = 1;
+        delay_time(50);
+        BEEP_BEEP = 0;
+        delay_time(50);
+        BEEP_BEEP = 1;
+        delay_time(50);
+        BEEP_BEEP = 0;
+        return 0;
+    }
+
+    //////////// 结尾部分 //////////////////
+    last_in_x1 = IN_X1;
+    last_in_x2 = IN_X2;
+    last_in_x3 = IN_X3;
+    last_in_x4 = IN_X4;
+}
+```
+
+
+
+**注意事项**
+
+1. 第 (4) 问对精度要求较高，请尽可能的将四路寻迹模块的精度调好，确保平衡小车在自平衡过程中产生倾角时，四路寻迹模块能正确读数
+2. 修改代码中OLED相关部分代码可能会导致运动状态改变，这是因为OLED的输出速度较慢，在代码中会起到一定的延迟作用
+3. 运行时请确保小车插上了OLED屏。经测试，当代码执行到OLED打印输出时，若小车上没有插OLED的硬件会导致严重的程序卡顿，小车的运动状态极不稳定
+4. MPU6050 极少数情况下存在初始化失败的现象，读数一直为0。关闭电源静置五分钟左右后恢复正常
+
