@@ -16,6 +16,7 @@ release = 'v2.0'
 
 extensions = [
     'recommonmark',
+    'myst-parser'
 ]
 
 templates_path = ['_templates']
