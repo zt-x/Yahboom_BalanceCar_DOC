@@ -15,7 +15,7 @@ release = 'v2.0'
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
 extensions = [
-    'myst-parser',
+    'recommonmark',
 ]
 
 templates_path = ['_templates']
