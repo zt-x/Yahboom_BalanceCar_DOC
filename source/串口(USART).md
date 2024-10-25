@@ -4,7 +4,7 @@
 #### uart_init(u32 bound)
 初始化串口USART1
 
-<table>
+<table border="1">
 <tr><th>参数</th><th>类型</th><th>注释</th></tr>
 <tr><td>bound</td><td>u32</td><td>波特率</td></tr>
 </table>
@@ -16,7 +16,7 @@
 
 发送字符
 
-<table>
+<table border="1">
 <tr><th>参数</th><th>类型</th><th>注释</th></tr>
 <tr><td>ch</td><td>uint8_t</td><td>发送的字符</td></tr>
 </table>
