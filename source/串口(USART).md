@@ -1,3 +1,9 @@
+<style type="text/css">
+table {font-size:12px;color:#333333;width:100%;border-width: 1px;border-color: #729ea5;border-collapse: collapse;}
+th {font-size:12px;background-color:#acc8cc;border-width: 1px;padding: 8px;border-style: solid;border-color: #729ea5;text-align:left;}
+tr {background-color:#d4e3e5;}
+td {font-size:12px;border-width: 1px;padding: 8px;border-style: solid;border-color: #729ea5;}
+</style>
 ## 串口 (Usart)
 **标*号的方法为不常用方法**
 ### 方法
