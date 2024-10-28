@@ -1,4 +1,0 @@
-# Battery
-## Function
-
-nihao1

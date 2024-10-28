@@ -34,6 +34,7 @@
 <tr><th>参数</th><th>类型</th><th>注释</th></tr>
 <tr><td>bound</td><td>u32</td><td>波特率</td></tr>
 </table>
+
 #### USART1_IRQHandler()
 USART1中断处理函数
 
@@ -50,6 +51,8 @@ USART1中断处理函数
 <tr><th>参数</th><th>类型</th><th>注释</th></tr>
 <tr><td>ch</td><td>uint8_t</td><td>发送的字符</td></tr>
 </table>
+
+
 #### USART1_Send_ArrayU8(uint8_t *BufferPtr, uint16_t Length)
 
 <table border="1">
