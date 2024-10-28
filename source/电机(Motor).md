@@ -25,7 +25,7 @@
     tr {background-color:##efefef;}
     td {font-size:12px;border-width: 1px;padding: 8px;border-style: solid;border-color: #2980b9;}
 </style>
-## 电池电压(Battery)
+## 电机(Motor)
 
 ### 方法
 #### Battery_init()
