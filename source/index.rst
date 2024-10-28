@@ -3,12 +3,12 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to Yahboom_BL_BSP's documentation!
+亚博智能STM32平衡小车V2.0 BSP驱动库文档
 ==========================================
 
 .. toctree::
    :maxdepth: 3
-   :caption: Contents:
+   :caption: 内容:
 
    电池电压(Battery)
    蜂鸣器(Beep)
