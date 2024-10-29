@@ -32,7 +32,7 @@
 
 <table border="1">
 <tr><th>参数</th><th>类型</th><th>注释</th></tr>
-<tr><td>bound</td><td>u32</td><td>波特率</td></tr>
+<tr><td>bound</td><td>u32</td><td>波特率 (常用: 9600/115200)</td></tr>
 </table>
 
 #### USART1_IRQHandler()
