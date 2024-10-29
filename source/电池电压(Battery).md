@@ -24,6 +24,39 @@
     th {font-size:12px;background-color:#efefef;border-width: 1px;padding: 8px;border-style: solid;border-color: #2980b9;text-align:left;}
     tr {background-color:##efefef;}
     td {font-size:12px;border-width: 1px;padding: 8px;border-style: solid;border-color: #2980b9;}
+
+        .code-container {
+        background-color: #282c34;
+        color: #ffffff;
+        border-radius: 5px;
+        padding: 15px;
+        max-width: 600px;
+        margin-bottom: 20px;
+        overflow-x: auto;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    pre {
+        margin: 0;
+    }
+
+    code {
+        font-family: 'Courier New', Courier, monospace;
+        white-space: pre-wrap; /* Allows code to wrap in case it is too long */
+    }
+    .keyword {
+        color: #c678dd; /* 紫色 */
+        font-weight: bold;
+    }
+
+    .function {
+        color: #61afef; /* 蓝色 */
+    }
+
+    .string {
+        color: #98c379; /* 绿色 */
+    }
+
 </style>
 ## 电池电压(Battery)
 
@@ -73,4 +106,18 @@
 <tr><td>原始电压值</td><td>float</td></tr>
 </table>
 
+#### 使用示例
 
+<div class="code-container">
+<pre><code>
+<span class="include">#include</span> <span class="header">&lt;bsp_battery.h&gt;</span>
+<span class="keyword">int</span> <span class="function">main</span>()
+{
+    <span class="function">Battery_init</span>();
+    <span class="keyword">while</span>(<span class="number">1</span>){
+        // <span class="comment">获取当前电源电压</span>
+        <span class="keyword">float</span> v = <span class="function">Get_Battery_Volotage</span>();
+    }
+}
+</code></pre>
+</div>
