@@ -25,9 +25,8 @@
     tr {background-color:##efefef;}
     td {font-size:12px;border-width: 1px;padding: 8px;border-style: solid;border-color: #2980b9;}
 
-        .code-container {
+    .code-container {
         background-color: #282c34;
-        color: #ffffff;
         border-radius: 5px;
         padding: 15px;
         max-width: 600px;
@@ -41,8 +40,9 @@
     }
 
     code {
-        font-family: 'Courier New', Courier, monospace;
-        white-space: pre-wrap; /* Allows code to wrap in case it is too long */
+        font-family: 'Courier New', Courier, monospace !important;
+        white-space: pre-wrap !important; /* Allows code to wrap in case it is too long */
+        color: #ffffff;
     }
     .keyword {
         color: #c678dd; /* 紫色 */
