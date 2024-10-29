@@ -42,7 +42,10 @@
     code {
         font-family: 'Courier New', Courier, monospace !important;
         white-space: pre-wrap !important; /* Allows code to wrap in case it is too long */
-        color: #ffffff;
+        color: #ffffff !important;
+        background-color: #282c34 !important;
+        border: none !important;
+        font-size: 100% !important;
     }
     .keyword {
         color: #c678dd; /* 紫色 */
