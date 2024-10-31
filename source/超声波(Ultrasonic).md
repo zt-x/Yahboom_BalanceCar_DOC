@@ -101,10 +101,22 @@
 
 #### 使用示例
 
+<div class="notice">
+    <p>使用示例代码仅展示如何引入和使用<b>当前模块及前置依赖</b>, 不能直接复制使用</p>
+</div>
+
 <div class="code-container">
 <pre><code>
+
 <span class="include">#include</span> <span class="header">"&lt;bsp_ultrasonic.h&gt;"</span>
 <span class="include">#include</span> <span class="header">"&lt;delay.h&gt;"</span>
+
+// <span class="comment"> ..... </span>
+// <span class="comment"> 加载串口输出模块 </span>
+// <span class="comment"> 初始化中断分组 </span>
+// <span class="comment"> 初始化调试信息 </span>
+// <span class="comment"> ..... </span>
+
 <span class="keyword">int</span> <span class="function">main</span>()
 {
     // <span class="comment">超声测距模块依赖延时模块</span>
