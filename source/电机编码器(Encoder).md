@@ -57,7 +57,7 @@
         border: 1px solid #ffeeba;
         padding: 15px;
         border-radius: 5px;
-        margin: 20px 0;
+        margin: 20px 0 !important;
     }
     table {font-size:12px;color:#2980b9;width:70%;border-width: 1px;border-color:#2980b9;border-collapse: collapse;margin-bottom: 20px;}
     th {font-size:12px;background-color:#efefef;border-width: 1px;padding: 8px;border-style: solid;border-color: #2980b9;text-align:left;}
@@ -247,7 +247,7 @@ typedef enum {<br>
 <table border="1">
 <tr><th>参数</th><th>类型</th><th>注释</th></tr>
 <tr><td>MYTIMX</td><td>Motor_ID</td><td>选择一个电机读取</td></tr>
-<tr><td colspan="3"><br>
+<tr><td colspan="3">
 Motor_ID可选参数 MOTOR_ID_ML/MOTOR_ID_MR</td></tr>
 </table>
 

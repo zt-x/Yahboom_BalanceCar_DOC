@@ -10,7 +10,7 @@
         border: 1px solid #ffeeba;
         padding: 15px;
         border-radius: 5px;
-        margin: 20px 0;
+        margin: 20px 0 !important;
     }
 
     table {font-size:12px;color:#2980b9;width:70%;border-width: 1px;border-color:#2980b9;border-collapse: collapse;margin-bottom: 20px;}

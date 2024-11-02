@@ -10,7 +10,7 @@
             border: 1px solid #ffeeba;
             padding: 15px;
             border-radius: 5px;
-            margin: 20px 0;
+            margin: 20px 0 !important;
         }
 
         .notice h2 {
@@ -77,7 +77,7 @@
         border: 1px solid #ffeeba;
         padding: 15px;
         border-radius: 5px;
-        margin: 20px 0;
+        margin: 20px 0 !important;
     }
 </style>
 ## 超声波(Ultrasonic)
