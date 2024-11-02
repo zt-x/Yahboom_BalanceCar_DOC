@@ -281,10 +281,6 @@ Motor_ID可选参数 MOTOR_ID_ML/MOTOR_ID_MR</td></tr>
 #### TIM4_IRQHandler(void);
 定时器4中断处理函数
 
-<div class="notice">
-    <p>驱动电机时,请记得打开小车电源开关</p>
-</div>
-
 <div class="code-container">
 <pre>
 <code>
