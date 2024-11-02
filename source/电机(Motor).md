@@ -100,35 +100,38 @@
 
 <table border="1">
 <tr><th>参数</th><th>类型</th><th>注释</th></tr>
-<tr><td>motor_left</td><td>u16</td><td>左电机的PWM</td></tr>
-<tr><td>motor_right</td><td>u16</td><td>右电机的PWM</td></tr>
+<tr><td>motor_left</td><td>u16</td><td>左电机的PWM （电机有效PWM范围1500~3000）</td></tr>
+<tr><td>motor_right</td><td>u16</td><td>右电机的PWM （电机有效PWM范围1500~3000）</td></tr>
 <tr><td colspan="3">PWM为正数时正转（小车前进方向），为负数时反转（小车后退方向）</td> </tr>
 </table>
 
 #### 使用示例
 
 <div class="notice">
-    <p>驱动电机时,请记得打开小车电源开关</p>
+    <p>1. 务必先执行Balance_Motor_Init（）,再执行Balance_PWM_Init()</p>
+    <p>2. 驱动电机时,请记得打开小车电源开关</p>
 </div>
 
 <div class="code-container">
-<pre>
-<code>
+<pre><code>
+
 <span class="include">#include</span> <span class="string">&lt;Motor.h&gt;</span>
 <span class="include">#include</span> <span class="string">&lt;delay.h&gt;</span>
 
-<span class="function">Balance_PWM_Init</span>(<span class="number">2880</span>, <span class="number">0</span>);
 <span class="function">Balance_Motor_Init</span>();
+<span class="function">Balance_PWM_Init</span>(<span class="number">2880</span>, <span class="number">0</span>);
+
 
 <span class="keyword">while</span>(<span class="number">1</span>) {
-    <span class="function">Set_Pwm</span>(<span class="number">100</span>, <span class="number">0</span>);
-    <span class="function">delay_ms</span>(<span class="number">10</span>);
-    <span class="function">Set_Pwm</span>(<span class="number">0</span>, <span class="number">100</span>);
-    <span class="function">delay_ms</span>(<span class="number">10</span>);
-    <span class="function">Set_Pwm</span>(<span class="number">-100</span>, <span class="number">0</span>);
-    <span class="function">delay_ms</span>(<span class="number">10</span>);
-    <span class="function">Set_Pwm</span>(<span class="number">0</span>, <span class="number">-100</span>);
+    <span class="function">Set_Pwm</span>(<span class="number">2200</span>, <span class="number">0</span>);
+    <span class="function">delay_ms</span>(<span class="number">2000</span>);
+    <span class="function">Set_Pwm</span>(<span class="number">0</span>, <span class="number">0</span>);
+    <span class="function">delay_ms</span>(<span class="number">2000</span>);
+    <span class="function">Set_Pwm</span>(<span class="number">0</span>, <span class="number">2200</span>);
+    <span class="function">delay_ms</span>(<span class="number">2000</span>);
+    <span class="function">Set_Pwm</span>(<span class="number">0</span>, <span class="number">0</span>);
+    <span class="function">delay_ms</span>(<span class="number">2000</span>);
 }
-</code>
-</pre>
+
+</code></pre>
 </div>
