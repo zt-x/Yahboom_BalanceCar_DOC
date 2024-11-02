@@ -108,7 +108,7 @@
 #### 使用示例
 
 <div class="notice">
-    <p>1. 务必先执行Balance_Motor_Init（）,再执行Balance_PWM_Init()</p>
+    <p>1. 务必先执行Balance_Motor_Init(),再执行Balance_PWM_Init()</p>
     <p>2. 驱动电机时,请记得打开小车电源开关</p>
 </div>
 

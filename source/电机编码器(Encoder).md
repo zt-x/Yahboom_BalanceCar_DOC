@@ -259,7 +259,7 @@ Motor_ID可选参数 MOTOR_ID_ML/MOTOR_ID_MR</td></tr>
 
 
 #### Get_Velocity_From_Encoder(int encoder_left, int encoder_right);
-返回左右轮的转速
+返回左右轮的转速, 单位为mm/s
 
 <table border="1">
 <tr><th>参数</th><th>类型</th><th>注释</th></tr>
@@ -270,7 +270,7 @@ Motor_ID可选参数 MOTOR_ID_ML/MOTOR_ID_MR</td></tr>
 <table border="1">
 <tr><th>返回值</th><th>类型</th></tr>
 <tr><td>velocities</td><td>float*</td></tr>
-<tr><td colspan="2">返回值为一个速度数组<br>velocities[0]是左电机速度<br>velocities[1]是右电机速度</td></tr>
+<tr><td colspan="2">返回值为一个速度数组<br>velocities[0]是左电机速度<br>velocities[1]是右电机速度, 单位为mm/s</td></tr>
 </table>
 
 
