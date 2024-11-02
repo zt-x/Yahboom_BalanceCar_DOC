@@ -68,6 +68,8 @@
 ## 电机(Motor)
 
 ### 宏定义
+
+<pre><code>
 左电机PWM
 #define L_PWMA   TIM8->CCR1
 #define L_PWMB   TIM8->CCR2
@@ -75,6 +77,7 @@
 右电机PWM
 #define R_PWMA   TIM8->CCR3
 #define R_PWMB   TIM8->CCR4
+</code></pre>
 
 ### 方法
 
