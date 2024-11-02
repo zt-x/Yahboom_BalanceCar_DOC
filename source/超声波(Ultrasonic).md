@@ -109,6 +109,7 @@
 <pre><code>
 <span class="include">#include</span> <span class="header">"&lt;bsp_ultrasonic.h&gt;"</span>
 <span class="include">#include</span> <span class="header">"&lt;delay.h&gt;"</span>
+<span class="include">#include</span> <span class="header">"&lt;usart.h&gt;"</span>
 // <span class="comment"> ..... </span>
 // <span class="comment"> 加载串口输出模块 </span>
 // <span class="comment"> 初始化中断分组 </span>
@@ -118,6 +119,7 @@
 {
     // <span class="comment">超声测距模块依赖延时模块</span>
     <span class="function">delay_init</span>();
+    <span class="function">uart_init</span>(115200);
     <span class="function">ultrasonic_init</span>();
     <span class="keyword">while</span>(<span class="number">1</span>){
         <span class="function">printf</span>(<span class="string">"dis: %dmm\n"</span>, <span class="function">get_distance</span>());
