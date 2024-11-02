@@ -68,16 +68,16 @@
 
 ### 宏定义
 定时器的自动重装载值,不可大于65535 因为F103的定时器是16位的。<br>
-#define ENCODER_TIM_PERIOD (u16)(65535)
+<span class="include">#define ENCODER_TIM_PERIOD (u16)(65535)</span>
 
 计算转速需要的参数<br>
-#define PI 3.14159265							//PI圆周率<br>
-#define Control_Frequency  200.0	//编码器读取频率<br>
-#define Diameter_67  67.0 				//轮子直径67mm <br>
-#define EncoderMultiples   4.0 		//编码器倍频数<br>
-#define Encoder_precision  11.0 	//编码器精度 11线<br>
-#define Reduction_Ratio  30.0			//减速比30<br>
-#define Perimeter  210.4867 			//周长，单位mm<br>
+<span class="include">#define PI 3.14159265							//PI圆周率</span><br>
+<span class="include">#define Control_Frequency  200.0	//编码器读取频率</span><br>
+<span class="include">#define Diameter_67  67.0 				//轮子直径67mm</span> <br>
+<span class="include">#define EncoderMultiples   4.0 		//编码器倍频数</span><br>
+<span class="include">#define Encoder_precision  11.0 	//编码器精度 11线</span><br>
+<span class="include">#define Reduction_Ratio  30.0			//减速比30</span><br>
+<span class="include">#define Perimeter  210.4867 			//周长，单位mm</span><br>
 
 <br>
 左右轮的ID<br>

@@ -69,14 +69,13 @@
 
 ### 宏定义
 
-<pre><code>
-左电机PWM
-#define L_PWMA   TIM8->CCR1
-#define L_PWMB   TIM8->CCR2
-
-右电机PWM
-#define R_PWMA   TIM8->CCR3
-#define R_PWMB   TIM8->CCR4
+左电机PWM<br>
+<span class="include"> #define L_PWMA   TIM8->CCR1 </span><br>
+<span class="include"> #define L_PWMB   TIM8->CCR2 </span><br>
+<br>
+右电机PWM <br>
+<span class="include"> #define R_PWMA   TIM8->CCR3 </span> <br>
+<span class="include"> #define R_PWMB   TIM8->CCR4 </span> <br>
 </code></pre>
 
 ### 方法
