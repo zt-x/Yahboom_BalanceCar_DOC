@@ -251,6 +251,13 @@ typedef enum {<br>
 Motor_ID可选参数 MOTOR_ID_ML/MOTOR_ID_MR</td></tr>
 </table>
 
+<table border="1">
+<tr><th>返回值</th><th>类型</th></tr>
+<tr><td>编码器计数</td><td>int</td></tr>
+</table>
+
+
+
 #### Get_Velocity_From_Encoder(int encoder_left, int encoder_right);
 返回左右轮的转速
 
