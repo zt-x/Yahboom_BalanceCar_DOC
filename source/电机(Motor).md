@@ -113,8 +113,8 @@
 </div>
 
 <div class="code-container">
-<pre><code>
-
+<pre>
+<code>
 <span class="include">#include</span> <span class="string">&lt;Motor.h&gt;</span>
 <span class="include">#include</span> <span class="string">&lt;delay.h&gt;</span>
 
@@ -132,6 +132,6 @@
     <span class="function">Set_Pwm</span>(<span class="number">0</span>, <span class="number">0</span>);
     <span class="function">delay_ms</span>(<span class="number">2000</span>);
 }
-
-</code></pre>
+</code>
+</pre>
 </div>
