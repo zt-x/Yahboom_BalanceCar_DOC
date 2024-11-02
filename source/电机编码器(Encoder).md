@@ -281,3 +281,26 @@ Motor_ID可选参数 MOTOR_ID_ML/MOTOR_ID_MR</td></tr>
 #### TIM4_IRQHandler(void);
 定时器4中断处理函数
 
+<div class="notice">
+    <p>驱动电机时,请记得打开小车电源开关</p>
+</div>
+
+<div class="code-container">
+<pre>
+<code>
+// <span class="comment"> 导入部分代码省略 </span>
+<span class="keyword">int</span> <span class="keyword">main</span>() {
+    <span class="function">Encoder_Init_TIM3</span>();
+    <span class="function">Encoder_Init_TIM4</span>();
+    <span class="keyword">int</span> left_count = <span class="number">0</span>;
+    <span class="keyword">int</span> right_count = <span class="number">0</span>;
+    <span class="keyword">while</span>(<span class="number">1</span>) {
+        left_count <span class="keyword">+=</span> <span class="function">Read_Encoder</span>(<span class="string">MOTOR_ID_ML</span>);
+        right_count <span class="keyword">+=</span> <span class="function">Read_Encoder</span>(<span class="string">MOTOR_ID_MR</span>);
+        <span class="function">printf</span>(<span class="string">"L: %d, R: %d\n"</span>, left_count, right_count);
+    }
+    <span class="keyword">return</span> <span class="number">0</span>;
+}
+</code>
+</pre>
+</div>
