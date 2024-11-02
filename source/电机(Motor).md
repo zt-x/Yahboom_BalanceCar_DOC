@@ -100,9 +100,13 @@
 
 <table border="1">
 <tr><th>参数</th><th>类型</th><th>注释</th></tr>
-<tr><td>motor_left</td><td>u16</td><td>左电机的PWM （电机有效PWM范围1500~3000）</td></tr>
-<tr><td>motor_right</td><td>u16</td><td>右电机的PWM （电机有效PWM范围1500~3000）</td></tr>
-<tr><td colspan="3">PWM为正数时正转（小车前进方向），为负数时反转（小车后退方向）</td> </tr>
+<tr><td>motor_left</td><td>u16</td><td>左电机的PWM </td></tr>
+<tr><td>motor_right</td><td>u16</td><td>右电机的PWM </td></tr>
+<tr><td colspan="3">PWM为正数时正转（小车前进方向），为负数时反转（小车后退方向）</td>
+</tr>
+<tr><td colspan="3">电机有效PWM范围与设定的PWM自动重装载值有关，默认arr=2880时，PWM有效范围为1500~2880</td>
+</tr>
+
 </table>
 
 #### 使用示例
