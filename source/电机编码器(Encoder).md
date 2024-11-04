@@ -79,6 +79,13 @@
 <span class="include">#define Reduction_Ratio  30.0			//减速比30</span><br>
 <span class="include">#define Perimeter  210.4867 			//周长，单位mm</span><br>
 
+<div class="notice">
+    <p>Control_Frequency=200 意味着Read_Encoder()的取值周期为5ms </p>
+</div>
+
+<div class="code-container">
+<pre>
+<code>
 <br>
 左右轮的ID<br>
 typedef enum {<br>
@@ -87,6 +94,9 @@ typedef enum {<br>
     MAX_MOTOR<br>
 } Motor_ID;<br>
 <br>
+</code>
+</pre>
+</div>
 
 ### 方法
 
@@ -291,6 +301,8 @@ Motor_ID可选参数 MOTOR_ID_ML/MOTOR_ID_MR</td></tr>
     <span class="keyword">int</span> left_count = <span class="number">0</span>;
     <span class="keyword">int</span> right_count = <span class="number">0</span>;
     <span class="keyword">while</span>(<span class="number">1</span>) {
+        // <span class="comment"> 取5ms作为测速周期, 对应着宏定义中的 Control_Frequency=200 (T=1/f)</span>
+        <span class="function">delay_ms</span>(5);
         left_count <span class="keyword">+=</span> <span class="function">Read_Encoder</span>(<span class="string">MOTOR_ID_ML</span>);
         right_count <span class="keyword">+=</span> <span class="function">Read_Encoder</span>(<span class="string">MOTOR_ID_MR</span>);
         <span class="function">printf</span>(<span class="string">"L: %d, R: %d\n"</span>, left_count, right_count);
