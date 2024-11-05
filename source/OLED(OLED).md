@@ -12,7 +12,7 @@
         margin: 20px 0 !important;
     }
 
-    table {font-size:12px;color:#2980b9;width:70%;border-width: 1px;border-color:#2980b9;border-collapse: collapse;margin-bottom: 20px;}
+    table {font-size:12px;color:#2980b9;max-width:80%;min-width:30%;border-width: 1px;border-color:#2980b9;border-collapse: collapse;margin-bottom: 20px;}
     th {font-size:12px;background-color:#efefef;border-width: 1px;padding: 8px;border-style: solid;border-color: #2980b9;text-align:left;}
     tr {background-color:##efefef;}
     td {font-size:12px;border-width: 1px;padding: 8px;border-style: solid;border-color: #2980b9;}
