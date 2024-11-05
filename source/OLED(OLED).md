@@ -325,16 +325,10 @@
 <code>
 // <span class="comment"> 导入部分代码省略 </span>
 <span class="keyword">int</span> <span class="keyword">main</span>() {
-    <span class="function">Encoder_Init_TIM3</span>();
-    <span class="function">Encoder_Init_TIM4</span>();
-    <span class="keyword">int</span> left_count = <span class="number">0</span>;
-    <span class="keyword">int</span> right_count = <span class="number">0</span>;
+    <span class="function">OLED_I2C_Init</span>();
+    <span class="function">OLED_Clear</span>();
     <span class="keyword">while</span>(<span class="number">1</span>) {
-        // <span class="comment"> 取5ms作为测速周期, 对应着宏定义中的 Control_Frequency=200 (T=1/f)</span>
-        <span class="function">delay_ms</span>(5);
-        left_count <span class="keyword">+=</span> <span class="function">Read_Encoder</span>(<span class="string">MOTOR_ID_ML</span>);
-        right_count <span class="keyword">+=</span> <span class="function">Read_Encoder</span>(<span class="string">MOTOR_ID_MR</span>);
-        <span class="function">printf</span>(<span class="string">"L: %d, R: %d\n"</span>, left_count, right_count);
+        <span class="function">OLED_DrawLine</span>(<span class="string">"Hello Yahboom!"</span>,<span class="number">1</span>, <span class="number">0</span>, true, true);
     }
     <span class="keyword">return</span> <span class="number">0</span>;
 }
