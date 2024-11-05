@@ -114,5 +114,209 @@
 <tr><td colspan="3">默认行高为10</td></tr>
 </table>
 
+<div class="notice">
+    <p> 下述方法为驱动芯片SSD1306提供，可以进行更细致的绘制操作 </p>
+</div>
 
+
+
+#### SSD1306_UpdateScreen()
+单位更新OLED显示屏内容
+<table border="1">
+<tr><th>返回值</th><th>类型</th></tr>
+<tr><td>无</td><td>void</td></tr>
+</table>
+
+#### SSD1306_ToggleInvert()
+切换OLED显示的颜色反转
+<table border="1">
+<tr><th>返回值</th><th>类型</th></tr>
+<tr><td>无</td><td>void</td></tr>
+</table>
+
+#### SSD1306_Fill(SSD1306_COLOR_t Color)
+填充屏幕的颜色
+<table border="1">
+<tr><th>参数</th><th>类型</th><th>注释</th></tr>
+<tr><td>Color</td><td>SSD1306_COLOR_t</td><td>填充颜色</td></tr>
+</table>
+<table border="1">
+<tr><th>返回值</th><th>类型</th></tr>
+<tr><td>无</td><td>void</td></tr>
+</table>
+
+#### SSD1306_DrawPixel(uint16_t x, uint16_t y, SSD1306_COLOR_t color)
+在指定坐标绘制一个像素
+<table border="1">
+<tr><th>参数</th><th>类型</th><th>注释</th></tr>
+<tr><td>x</td><td>uint16_t</td><td>x坐标</td></tr>
+<tr><td>y</td><td>uint16_t</td><td>y坐标</td></tr>
+<tr><td>color</td><td>SSD1306_COLOR_t</td><td>像素颜色</td></tr>
+</table>
+<table border="1">
+<tr><th>返回值</th><th>类型</th></tr>
+<tr><td>无</td><td>void</td></tr>
+</table>
+
+#### SSD1306_GotoXY(uint16_t x, uint16_t y)
+设置下一个字符的绘制坐标
+<table border="1">
+<tr><th>参数</th><th>类型</th><th>注释</th></tr>
+<tr><td>x</td><td>uint16_t</td><td>x坐标</td></tr>
+<tr><td>y</td><td>uint16_t</td><td>y坐标</td></tr>
+</table>
+<table border="1">
+<tr><th>返回值</th><th>类型</th></tr>
+<tr><td>无</td><td>void</td></tr>
+</table>
+
+#### SSD1306_Putc(char ch, FontDef_t *Font, SSD1306_COLOR_t color)
+绘制单个字符
+<table border="1">
+<tr><th>参数</th><th>类型</th><th>注释</th></tr>
+<tr><td>ch</td><td>char</td><td>要绘制的字符</td></tr>
+<tr><td>Font</td><td>FontDef_t*</td><td>使用的字体结构体</td></tr>
+<tr><td>color</td><td>SSD1306_COLOR_t</td><td>字符颜色</td></tr>
+</table>
+<table border="1">
+<tr><th>返回值</th><th>类型</th></tr>
+<tr><td>无</td><td>char</td></tr>
+</table>
+
+#### SSD1306_Puts(char *str, FontDef_t *Font, SSD1306_COLOR_t color)
+绘制字符串
+<table border="1">
+<tr><th>参数</th><th>类型</th><th>注释</th></tr>
+<tr><td>str</td><td>char*</td><td>要绘制的字符串</td></tr>
+<tr><td>Font</td><td>FontDef_t*</td><td>使用的字体结构体</td></tr>
+<tr><td>color</td><td>SSD1306_COLOR_t</td><td>字符串颜色</td></tr>
+</table>
+<table border="1">
+<tr><th>返回值</th><th>类型</th></tr>
+<tr><td>无</td><td>char</td></tr>
+</table>
+
+#### SSD1306_DrawLine(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1, SSD1306_COLOR_t c)
+绘制一条线
+<table border="1">
+<tr><th>参数</th><th>类型</th><th>注释</th></tr>
+<tr><td>x0</td><td>uint16_t</td><td>起始点x坐标</td></tr>
+<tr><td>y0</td><td>uint16_t</td><td>起始点y坐标</td></tr>
+<tr><td>x1</td><td>uint16_t</td><td>结束点x坐标</td></tr>
+<tr><td>y1</td><td>uint16_t</td><td>结束点y坐标</td></tr>
+<tr><td>c</td><td>SSD1306_COLOR_t</td><td>线条颜色</td></tr>
+</table>
+<table border="1">
+<tr><th>返回值</th><th>类型</th></tr>
+<tr><td>无</td><td>void</td></tr>
+</table>
+
+#### SSD1306_DrawRectangle(uint16_t x, uint16_t y, uint16_t w, uint16_t h, SSD1306_COLOR_t c)
+绘制矩形
+<table border="1">
+<tr><th>参数</th><th>类型</th><th>注释</th></tr>
+<tr><td>x</td><td>uint16_t</td><td>左上角x坐标</td></tr>
+<tr><td>y</td><td>uint16_t</td><td>左上角y坐标</td></tr>
+<tr><td>w</td><td>uint16_t</td><td>矩形宽度</td></tr>
+<tr><td>h</td><td>uint16_t</td><td>矩形高度</td></tr>
+<tr><td>c</td><td>SSD1306_COLOR_t</td><td>矩形颜色</td></tr>
+</table>
+<table border="1">
+<tr><th>返回值</th><th>类型</th></tr>
+<tr><td>无</td><td>void</td></tr>
+</table>
+
+#### SSD1306_DrawFilledRectangle(uint16_t x, uint16_t y, uint16_t w, uint16_t h, SSD1306_COLOR_t c)
+绘制填充矩形
+<table border="1">
+<tr><th>参数</th><th>类型</th><th>注释</th></tr>
+<tr><td>x</td><td>uint16_t</td><td>左上角x坐标</td></tr>
+<tr><td>y</td><td>uint16_t</td><td>左上角y坐标</td></tr>
+<tr><td>w</td><td>uint16_t</td><td>矩形宽度</td></tr>
+<tr><td>h</td><td>uint16_t</td><td>矩形高度</td></tr>
+<tr><td>c</td><td>SSD1306_COLOR_t</td><td>矩形颜色</td></tr>
+</table>
+<table border="1">
+<tr><th>返回值</th><th>类型</th></tr>
+<tr><td>无</td><td>void</td></tr>
+</table>
+
+#### SSD1306_DrawTriangle(uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2, uint16_t x3, uint16_t y3, SSD1306_COLOR_t color)
+绘制三角形
+<table border="1">
+<tr><th>参数</th><th>类型</th><th>注释</th></tr>
+<tr><td>x1</td><td>uint16_t</td><td>第一点x坐标</td></tr>
+<tr><td>y1</td><td>uint16_t</td><td>第一点y坐标</td></tr>
+<tr><td>x2</td><td>uint16_t</td><td>第二点x坐标</td></tr>
+<tr><td>y2</td><td>uint16_t</td><td>第二点y坐标</td></tr>
+<tr><td>x3</td><td>uint16_t</td><td>第三点x坐标</td></tr>
+<tr><td>y3</td><td>uint16_t</td><td>第三点y坐标</td></tr>
+<tr><td>color</td><td>SSD1306_COLOR_t</td><td>三角形颜色</td></tr>
+</table>
+<table border="1">
+<tr><th>返回值</th><th>类型</th></tr>
+<tr><td>无</td><td>void</td></tr>
+</table>
+
+#### SSD1306_DrawCircle(int16_t x0, int16_t y0, int16_t r, SSD1306_COLOR_t c)
+绘制圆形
+<table border="1">
+<tr><th>参数</th><th>类型</th><th>注释</th></tr>
+<tr><td>x0</td><td>int16_t</td><td>圆心x坐标</td></tr>
+<tr><td>y0</td><td>int16_t</td><td>圆心y坐标</td></tr>
+<tr><td>r</td><td>int16_t</td><td>半径</td></tr>
+<tr><td>c</td><td>SSD1306_COLOR_t</td><td>圆形颜色</td></tr>
+</table>
+<table border="1">
+<tr><th>返回值</th><th>类型</th></tr>
+<tr><td>无</td><td>void</td></tr>
+</table>
+
+#### SSD1306_DrawFilledCircle(int16_t x0, int16_t y0, int16_t r, SSD1306_COLOR_t c)
+绘制填充圆形
+<table border="1">
+<tr><th>参数</th><th>类型</th><th>注释</th></tr>
+<tr><td>x0</td><td>int16_t</td><td>圆心x坐标</td></tr>
+<tr><td>y0</td><td>int16_t</td><td>圆心y坐标</td></tr>
+<tr><td>r</td><td>int16_t</td><td>半径</td></tr>
+<tr><td>c</td><td>SSD1306_COLOR_t</td><td>填充圆形颜色</td></tr>
+</table>
+<table border="1">
+<tr><th>返回值</th><th>类型</th></tr>
+<tr><td>无</td><td>void</td></tr>
+</table>
+
+#### ssd1306_I2C_Init()
+初始化I2C接口
+<table border="1">
+<tr><th>返回值</th><th>类型</th></tr>
+<tr><td>无</td><td>void</td></tr>
+</table>
+
+#### ssd1306_I2C_Write(uint8_t address, uint8_t reg, uint8_t data)
+向指定地址和寄存器写入数据
+<table border="1">
+<tr><th>参数</th><th>类型</th><th>注释</th></tr>
+<tr><td>address</td><td>uint8_t</td><td>I2C设备地址</td></tr>
+<tr><td>reg</td><td>uint8_t</td><td>寄存器地址</td></tr>
+<tr><td>data</td><td>uint8_t</td><td>要写入的数据</td></tr>
+</table>
+<table border="1">
+<tr><th>返回值</th><th>类型</th></tr>
+<tr><td>无</td><td>void</td></tr>
+</table>
+
+#### ssd1306_I2C_WriteMulti(uint8_t address, uint8_t reg, uint8_t *data, uint16_t count)
+向指定地址和寄存器写入多个数据
+<table border="1">
+<tr><th>参数</th><th>类型</th><th>注释</th></tr>
+<tr><td>address</td><td>uint8_t</td><td>I2C设备地址</td></tr>
+<tr><td>reg</td><td>uint8_t</td><td>寄存器地址</td></tr>
+<tr><td>data</td><td>uint8_t*</td><td>指向数据的指针</td></tr>
+<tr><td>count</td><td>uint16_t</td><td>要写入的数据数量</td></tr>
+</table>
+<table border="1">
+<tr><th>返回值</th><th>类型</th></tr>
+<tr><td>无</td><td>void</td></tr>
+</table>
 
