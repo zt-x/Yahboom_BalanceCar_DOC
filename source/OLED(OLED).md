@@ -16,7 +16,7 @@
     th {font-size:12px;background-color:#efefef;border-width: 1px;padding: 8px;border-style: solid;border-color: #2980b9;text-align:left;}
     tr {background-color:##efefef;}
     td {font-size:12px;border-width: 1px;padding: 8px;border-style: solid;border-color: #2980b9;}
-        .code-container {
+    .code-container {
         background-color: #282c34;
         border-radius: 5px;
         padding: 15px;
