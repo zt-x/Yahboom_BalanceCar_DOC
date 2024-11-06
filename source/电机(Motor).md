@@ -127,11 +127,8 @@
 <code>
 <span class="include">#include</span> <span class="string">&lt;Motor.h&gt;</span>
 <span class="include">#include</span> <span class="string">&lt;delay.h&gt;</span>
-
 <span class="function">Balance_Motor_Init</span>();
 <span class="function">Balance_PWM_Init</span>(<span class="number">2880</span>, <span class="number">0</span>);
-
-
 <span class="keyword">while</span>(<span class="number">1</span>) {
     <span class="function">Set_Pwm</span>(<span class="number">2200</span>, <span class="number">0</span>);
     <span class="function">delay_ms</span>(<span class="number">2000</span>);
