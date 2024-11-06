@@ -325,7 +325,8 @@
 <div class="code-container">
 <pre>
 <code>
-// <span class="comment"> 导入部分代码省略 </span>
+<span class="include">#include </span><span class="string">"bsp_oled_i2c.h"</span>
+<span class="include">#include </span><span class="string">"bsp_oled.h"</span>
 <span class="keyword">int</span> <span class="keyword">main</span>() {
     <span class="function">OLED_I2C_Init</span>();
     <span class="function">OLED_Clear</span>();
