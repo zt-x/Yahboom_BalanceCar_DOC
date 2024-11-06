@@ -115,7 +115,7 @@
 
 </table>
 
-#### 使用示例
+### 使用示例
 
 <div class="notice">
     <p>1. 务必先执行Balance_Motor_Init(),再执行Balance_PWM_Init()</p>

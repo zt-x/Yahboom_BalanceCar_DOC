@@ -27,9 +27,14 @@
 </style>
 ## 软件I2C(IIC_Software)
 
+<div class="notice">
+    <p>该驱动库位于 <br> MPU6050/IIC_Software </br> 目录下，在小车中仅用于做MPU6050的通信支持</p>
+</div>
+
+
 ### 方法
 #### IIC_MPU6050_Init()
-IIC引脚初始化
+MPU6050的IIC引脚初始化
 <table border="1">
 <tr><th>返回值</th><th>类型</th></tr>
 <tr><td>无</td><td>void</td></tr>
@@ -214,3 +219,4 @@ IIC连续读数据
 <tr><th>返回值</th><th>类型</th></tr>
 <tr><td>1：成功；0：失败</td><td>u8</td></tr>
 </table>
+
