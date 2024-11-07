@@ -259,7 +259,7 @@
 <pre><code>
 <span class="include">#include </span><span class="string">"bsp_bluetooth.h"</span>
 <span class="keyword">int </span><span class="function">main</span>() {
-    bluetooth_init(<span class="keyword">void</span>);
+    bluetooth_init();
     bluetooth_send_string(<span class="string">"Hello Yahboom!\n"</span>);
     <span class="keyword">while</span>(1);
 }
