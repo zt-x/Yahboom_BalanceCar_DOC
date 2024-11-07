@@ -252,4 +252,24 @@
 </table>
 
 
+### 使用示例
 
+<div class="code-container">
+<pre><code>
+<span class="include">#include </span><span class="string">"bsp_bluetooth.h"</span>
+<span class="keyword">int </span><span class="function">main</span>() {
+    bluetooth_init(<span class="keyword">void</span>);
+	bluetooth_send_string(<span class="string">"Hello Yahboom!\n"</span>);
+    <span class="keyword">while</span>(1);
+}
+// <span class="comment">当蓝牙接收到消息后会触发该中断</span>
+<span class="keyword">void </span><span class="function">UART5_IRQHandler</span>(<span class="keyword">void</span>) {
+	uint8_t Rx5_Temp;
+	<span class="keyword">if</span> (USART_GetITStatus(UART5, USART_IT_RXNE) != RESET)
+	{
+		Rx5_Temp = USART_ReceiveData(UART5);
+		bluetooth_send_char(Rx5_Temp);
+	}
+}
+</code></pre>
+</div>
