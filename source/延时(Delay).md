@@ -27,10 +27,6 @@
 </style>
 ## 延时(Delay)
 
-void delay_init(void);
-void delay_ms(uint16_t nms);
-void delay_us(uint32_t nus);
-
 ### 方法
 #### delay_init(void)
 初始化延时函数<br>

@@ -27,50 +27,163 @@
 </style>
 ## PS2(PS2)
 
+### 全局变量
+<table border="1">
+<tr><th>全局变量</th><th>类型</th><th>注释</th></tr>
+<tr><td>Handkey</td><td>u16</td><td>按键值读取临时存储</td></tr>
+<tr><td>Comd</td><td>u8[2]</td><td>开始命令数组</td></tr>
+<tr><td>Data</td><td>u8[9]</td><td>数据存储数组</td></tr>
+<tr><td>MASK</td><td>u16[16]</td><td>按键掩码数组</td></tr>
+</table>
+
+### 宏定义
+<table border="1">
+<tr><th>宏定义</th><th>值</th><th>注释</th></tr>
+<tr><td>PS_RCC_DI</td><td>RCC_APB2Periph_GPIOB</td><td>数据输入DI引脚的时钟</td></tr>
+<tr><td>PS_RCC_DO</td><td>RCC_APB2Periph_GPIOB</td><td>数据输出DO引脚的时钟</td></tr>
+<tr><td>PS_RCC_CS</td><td>RCC_APB2Periph_GPIOB</td><td>片选CS引脚的时钟</td></tr>
+<tr><td>PS_RCC_CLK</td><td>RCC_APB2Periph_GPIOB</td><td>时钟CLK引脚的时钟</td></tr>
+<tr><td>PS_PIN_DI</td><td>GPIO_Pin_14</td><td>数据输入DI引脚</td></tr>
+<tr><td>PS_PIN_DO</td><td>GPIO_Pin_15</td><td>数据输出DO引脚</td></tr>
+<tr><td>PS_PIN_CS</td><td>GPIO_Pin_12</td><td>片选CS引脚</td></tr>
+<tr><td>PS_PIN_CLK</td><td>GPIO_Pin_13</td><td>时钟CLK引脚</td></tr>
+<tr><td>PS_PORT_DI</td><td>GPIOB</td><td>DI引脚的GPIO端口</td></tr>
+<tr><td>PS_PORT_DO</td><td>GPIOB</td><td>DO引脚的GPIO端口</td></tr>
+<tr><td>PS_PORT_CS</td><td>GPIOB</td><td>CS引脚的GPIO端口</td></tr>
+<tr><td>PS_PORT_CLK</td><td>GPIOB</td><td>CLK引脚的GPIO端口</td></tr>
+<tr><td>DI</td><td>PBin(14)</td><td>数据输入</td></tr>
+<tr><td>DO_H</td><td>PBout(15)=1</td><td>命令位高</td></tr>
+<tr><td>DO_L</td><td>PBout(15)=0</td><td>命令位低</td></tr>
+<tr><td>CS_H</td><td>PBout(12)=1</td><td>CS拉高</td></tr>
+<tr><td>CS_L</td><td>PBout(12)=0</td><td>CS拉低</td></tr>
+<tr><td>CLK_H</td><td>PBout(13)=1</td><td>时钟拉高</td></tr>
+<tr><td>CLK_L</td><td>PBout(13)=0</td><td>时钟拉低</td></tr>
+<tr><td>PSB_*</td><td>对应的按键值</td><td>各种按键的常量定义</td></tr>
+</table>
+
+
 ### 方法
-#### Battery_init()
-初始化电池电压测量库
 
-#### Get_Battery_Volotage(void)
-*注：Yahboom STM32平衡小车配的电源电压输出范围大致在 8.5~12.5v之间*
-
-获得实际电池分压前电压<br>
-实际测量的值比计算得出的值低一点点<br>
+#### PS2_Init(void)
+PS2接收器模块初始化
 <table border="1">
 <tr><th>返回值</th><th>类型</th></tr>
-<tr><td>原始电压值</td><td>float</td></tr>
+<tr><td>无</td><td>void</td></tr>
 </table>
 
-#### Battery_Get(uint8_t ch)
-获取ADC测量值<br>
+#### PS2_Cmd(u8 CMD)
+向手柄发送命令
 <table border="1">
 <tr><th>参数</th><th>类型</th><th>注释</th></tr>
-<tr><td>ch</td><td>uint8_t</td><td>ADC通道</td></tr>
+<tr><td>CMD</td><td>u8</td><td>要发送的命令</td></tr>
 </table>
-
 <table border="1">
 <tr><th>返回值</th><th>类型</th></tr>
-<tr><td>获取到的ADC值</td><td>uint16_t</td></tr>
+<tr><td>无</td><td>void</td></tr>
 </table>
 
-#### Battery_Get_Average(uint8_t ch, uint8_t times)
-获得 ADC 多次测量平均值 <br>
+#### PS2_RedLight(void)
+判断是否为红灯模式
+<table border="1">
+<tr><th>返回值</th><th>类型</th></tr>
+<tr><td>0</td><td>u8</td><td>红灯模式</td></tr>
+<tr><td>1</td><td>u8</td><td>其他模式</td></tr>
+</table>
+
+#### PS2_ReadData(void)
+读取手柄数据
+<table border="1">
+<tr><th>返回值</th><th>类型</th></tr>
+<tr><td>无</td><td>void</td></tr>
+</table>
+
+#### PS2_DataKey(void)
+读取按键值
+<table border="1">
+<tr><th>返回值</th><th>类型</th></tr>
+<tr><td>按键值</td><td>u8</td></tr>
+</table>
+
+#### PS2_AnologData(u8 button)
+获取摇杆的模拟值
 <table border="1">
 <tr><th>参数</th><th>类型</th><th>注释</th></tr>
-<tr><td>ch</td><td>uint8_t</td><td>ADC通道</td></tr>
-<tr><td>times</td><td>uint8_t</td><td>测量次数</td></tr>
+<tr><td>button</td><td>u8</td><td>要读取的摇杆按钮</td></tr>
 </table>
-
 <table border="1">
 <tr><th>返回值</th><th>类型</th></tr>
-<tr><td>获取到的ADC值</td><td>uint16_t</td></tr>
+<tr><td>模拟值</td><td>u8</td></tr>
 </table>
 
-#### Get_Measure_Volotage(void)
-获得测得原始电压值<br><br>
+#### PS2_ClearData(void)
+清除数据缓冲区
 <table border="1">
 <tr><th>返回值</th><th>类型</th></tr>
-<tr><td>原始电压值</td><td>float</td></tr>
+<tr><td>无</td><td>void</td></tr>
 </table>
+
+#### PS2_Vibration(u8 motor1, u8 motor2)
+设置手柄震动
+<table border="1">
+<tr><th>参数</th><th>类型</th><th>注释</th></tr>
+<tr><td>motor1</td><td>u8</td><td>右侧小震动电机（0x00关，其他开）</td></tr>
+<tr><td>motor2</td><td>u8</td><td>左侧大震动电机（0x40~0xFF开，值越大震动越大）</td></tr>
+</table>
+<table border="1">
+<tr><th>返回值</th><th>类型</th></tr>
+<tr><td>无</td><td>void</td></tr>
+</table>
+
+#### PS2_ShortPoll(void)
+短轮询
+<table border="1">
+<tr><th>返回值</th><th>类型</th></tr>
+<tr><td>无</td><td>void</td></tr>
+</table>
+
+#### PS2_EnterConfing(void)
+进入配置模式
+<table border="1">
+<tr><th>返回值</th><th>类型</th></tr>
+<tr><td>无</td><td>void</td></tr>
+</table>
+
+#### PS2_TurnOnAnalogMode(void)
+发送模拟量模式设置
+<table border="1">
+<tr><th>返回值</th><th>类型</th></tr>
+<tr><td>无</td><td>void</td></tr>
+</table>
+
+#### PS2_VibrationMode(void)
+设置振动模式
+<table border="1">
+<tr><th>返回值</th><th>类型</th></tr>
+<tr><td>无</td><td>void</td></tr>
+</table>
+
+#### PS2_ExitConfing(void)
+完成并保存配置
+<table border="1">
+<tr><th>返回值</th><th>类型</th></tr>
+<tr><td>无</td><td>void</td></tr>
+</table>
+
+#### PS2_SetInit(void)
+控制器配置初始化
+<table border="1">
+<tr><th>返回值</th><th>类型</th></tr>
+<tr><td>无</td><td>void</td></tr>
+</table>
+
+#### PS2_Data_Show(void)
+按键值测试及输出函数
+<table border="1">
+<tr><th>返回值</th><th>类型</th></tr>
+<tr><td>无</td><td>void</td></tr>
+</table>
+
+
+
 
 

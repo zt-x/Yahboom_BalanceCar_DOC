@@ -25,52 +25,31 @@
     tr {background-color:;}
     td {font-size:12px;border-width: 1px;padding: 8px;border-style: solid;border-color: #2980b9;}
 </style>
-## LED(Led)
+## LED(Led) *TODO*
+
+### 宏定义
+<table border="1">
+<tr><th>宏定义</th><th>值</th><th>注释</th></tr>
+<tr><td>LED_RCC</td><td>RCC_APB2Periph_GPIOB</td><td>LED引脚的时钟</td></tr>
+<tr><td>LED_PORT</td><td>GPIOB</td><td>LED控制的GPIO端口</td></tr>
+<tr><td>LED_PIN</td><td>GPIO_Pin_3</td><td>LED控制的GPIO引脚</td></tr>
+<tr><td>LED_ON</td><td>GPIO_SetBits(LED_PORT, LED_PIN)</td><td>打开LED</td></tr>
+<tr><td>LED_OFF</td><td>GPIO_ResetBits(LED_PORT, LED_PIN)</td><td>关闭LED</td></tr>
+<tr><td>LED</td><td>PBout(3)</td><td>LED的状态控制</td></tr>
+</table>
 
 ### 方法
-#### Battery_init()
-初始化电池电压测量库
 
-#### Get_Battery_Volotage(void)
-*注：Yahboom STM32平衡小车配的电源电压输出范围大致在 8.5~12.5v之间*
-
-获得实际电池分压前电压<br>
-实际测量的值比计算得出的值低一点点<br>
+#### init_led_gpio(void)
+初始化LED的GPIO引脚
 <table border="1">
 <tr><th>返回值</th><th>类型</th></tr>
-<tr><td>原始电压值</td><td>float</td></tr>
+<tr><td>无</td><td>void</td></tr>
 </table>
 
-#### Battery_Get(uint8_t ch)
-获取ADC测量值<br>
-<table border="1">
-<tr><th>参数</th><th>类型</th><th>注释</th></tr>
-<tr><td>ch</td><td>uint8_t</td><td>ADC通道</td></tr>
-</table>
-
+#### init_gpio(void)
+初始化GPIO引脚
 <table border="1">
 <tr><th>返回值</th><th>类型</th></tr>
-<tr><td>获取到的ADC值</td><td>uint16_t</td></tr>
+<tr><td>无</td><td>void</td></tr>
 </table>
-
-#### Battery_Get_Average(uint8_t ch, uint8_t times)
-获得 ADC 多次测量平均值 <br>
-<table border="1">
-<tr><th>参数</th><th>类型</th><th>注释</th></tr>
-<tr><td>ch</td><td>uint8_t</td><td>ADC通道</td></tr>
-<tr><td>times</td><td>uint8_t</td><td>测量次数</td></tr>
-</table>
-
-<table border="1">
-<tr><th>返回值</th><th>类型</th></tr>
-<tr><td>获取到的ADC值</td><td>uint16_t</td></tr>
-</table>
-
-#### Get_Measure_Volotage(void)
-获得测得原始电压值<br><br>
-<table border="1">
-<tr><th>返回值</th><th>类型</th></tr>
-<tr><td>原始电压值</td><td>float</td></tr>
-</table>
-
-
