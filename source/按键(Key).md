@@ -76,6 +76,26 @@
 
 *TODO*
 
+### 全局变量
+
+<table border="1">
+<tr><th>全局变量</th><th>类型</th><th>注释</th></tr>
+<tr><td>g_key1_long_press</td><td>uint16_t</td><td>记录按键1的长按计时</td></tr>
+</table>
+
+### 宏定义
+
+<table border="1">
+<tr><th>宏定义</th><th>值</th><th>注释</th></tr>
+<tr><td>KEY1_GPIO_PORT</td><td>GPIOA</td><td>按键1的GPIO端口</td></tr>
+<tr><td>KEY1_GPIO_PIN</td><td>GPIO_Pin_8</td><td>按键1的GPIO引脚</td></tr>
+<tr><td>KEY1_GPIO_CLK</td><td>RCC_APB2Periph_GPIOA</td><td>按键1的GPIO时钟</td></tr>
+<tr><td>KEY_PRESS</td><td>1</td><td>按键被按下</td></tr>
+<tr><td>KEY_RELEASE</td><td>0</td><td>按键被松开</td></tr>
+<tr><td>KEY_MODE_ONE_TIME</td><td>1</td><td>按下一次返回1</td></tr>
+<tr><td>KEY_MODE_ALWAYS</td><td>0</td><td>持续按下返回1</td></tr>
+</table>
+
 ### 方法
 
 #### Key_Scan(GPIO_TypeDef *GPIOx, uint16_t GPIO_Pin)
@@ -133,19 +153,6 @@
 <tr><td>KEY_PRESS：按下，KEY_RELEASE：松开</td><td>uint8_t</td></tr>
 </table>
 
-<table border="1">
-<tr><th>宏定义</th><th>值</th><th>注释</th></tr>
-<tr><td>KEY1_GPIO_PORT</td><td>GPIOA</td><td>按键1的GPIO端口</td></tr>
-<tr><td>KEY1_GPIO_PIN</td><td>GPIO_Pin_8</td><td>按键1的GPIO引脚</td></tr>
-<tr><td>KEY1_GPIO_CLK</td><td>RCC_APB2Periph_GPIOA</td><td>按键1的GPIO时钟</td></tr>
-<tr><td>KEY_PRESS</td><td>1</td><td>按键被按下</td></tr>
-<tr><td>KEY_RELEASE</td><td>0</td><td>按键被松开</td></tr>
-<tr><td>KEY_MODE_ONE_TIME</td><td>1</td><td>按下一次返回1</td></tr>
-<tr><td>KEY_MODE_ALWAYS</td><td>0</td><td>持续按下返回1</td></tr>
-</table>
 
-<table border="1">
-<tr><th>全局变量</th><th>类型</th><th>注释</th></tr>
-<tr><td>g_key1_long_press</td><td>uint16_t</td><td>记录按键1的长按计时</td></tr>
-</table>
+
 
