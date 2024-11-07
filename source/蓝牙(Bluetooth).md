@@ -2,6 +2,7 @@
         body {
             font-family: Arial, sans-serif;
             padding: 20px;
+            max-width: 800px;
         }
 
         .notice {
@@ -28,7 +29,7 @@
         background-color: #282c34;
         border-radius: 5px;
         padding: 15px;
-        max-width: 600px;
+        min-width: 600px;
         margin-bottom: 20px;
         overflow-x: auto;
         box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
@@ -259,17 +260,17 @@
 <span class="include">#include </span><span class="string">"bsp_bluetooth.h"</span>
 <span class="keyword">int </span><span class="function">main</span>() {
     bluetooth_init(<span class="keyword">void</span>);
-	bluetooth_send_string(<span class="string">"Hello Yahboom!\n"</span>);
+    bluetooth_send_string(<span class="string">"Hello Yahboom!\n"</span>);
     <span class="keyword">while</span>(1);
 }
 // <span class="comment">当蓝牙接收到消息后会触发该中断</span>
 <span class="keyword">void </span><span class="function">UART5_IRQHandler</span>(<span class="keyword">void</span>) {
-	uint8_t Rx5_Temp;
-	<span class="keyword">if</span> (USART_GetITStatus(UART5, USART_IT_RXNE) != RESET)
-	{
-		Rx5_Temp = USART_ReceiveData(UART5);
-		bluetooth_send_char(Rx5_Temp);
-	}
+    uint8_t Rx5_Temp;
+    <span class="keyword">if</span> (USART_GetITStatus(UART5, USART_IT_RXNE) != RESET)
+    {
+        Rx5_Temp = USART_ReceiveData(UART5);
+        bluetooth_send_char(Rx5_Temp);
+    }
 }
 </code></pre>
 </div>

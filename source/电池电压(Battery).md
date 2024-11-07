@@ -29,7 +29,7 @@
         background-color: #282c34;
         border-radius: 5px;
         padding: 15px;
-        max-width: 600px;
+        min-width: 600px;
         margin-bottom: 20px;
         overflow-x: auto;
         box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
