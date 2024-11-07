@@ -24,6 +24,54 @@
     th {font-size:12px;background-color:#efefef;border-width: 1px;padding: 8px;border-style: solid;border-color: #2980b9;text-align:left;}
     tr {background-color:;}
     td {font-size:12px;border-width: 1px;padding: 8px;border-style: solid;border-color: #2980b9;}
+
+        .code-container {
+        background-color: #282c34;
+        border-radius: 5px;
+        padding: 15px;
+        max-width: 600px;
+        margin-bottom: 20px;
+        overflow-x: auto;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    }
+    pre {
+        margin: 0;
+    }
+    code {
+        font-family: 'Courier New', Courier, monospace !important;
+        white-space: pre-wrap !important; /* Allows code to wrap in case it is too long */
+        color: #ffffff !important;
+        background-color: #282c34 !important;
+        border: none !important;
+        font-size: 100% !important;
+    }
+    .keyword {
+        color: #c678dd; /* 紫色 */
+        font-weight: bold;
+    }
+    .function {
+        color: #61afef; /* 蓝色 */
+    }
+    .string {
+        color: #98c379; /* 绿色 */
+    }
+    .include {
+        color: #c678dd; /* 紫色 */
+    }
+    .header {
+        color: #98c379; /* 绿色 */
+    }
+    .number {
+        color: #d19a66; /* 橙色 */
+    }
+
+    .string {
+        color: #56b6c2; /* 青色 */
+    }
+
+    .comment {
+        color: #7f848e; /* 灰色 */
+    }
 </style>
 ## 串口 (Usart)
 ### 方法
