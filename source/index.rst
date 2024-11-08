@@ -20,6 +20,7 @@
    软件I2C(IIC_Software)
    四路寻迹(IRtracking)
    按键(Key)
+   K210(K210)
    LED(Led)
    雷达(Lidar)
    电机(Motor)
