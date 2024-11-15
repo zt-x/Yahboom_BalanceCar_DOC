@@ -257,6 +257,16 @@ typedef enum {<br>
 #### Read_Encoder(Motor_ID MYTIMX)
 单位时间读取编码器计数
 
+<div class="notice">
+    <p>
+        Read_Encoder() 读取到的是从上一次调用Read_Encoder()到这一次调用Read_Encoder()这段时间内编码器的计数
+    </p>
+    <p>
+        为了计算转速, 需要以固定的时间间隔调用Read_Encoder()
+    </p>
+</div>
+
+
 <table border="1">
 <tr><th>参数</th><th>类型</th><th>注释</th></tr>
 <tr><td>MYTIMX</td><td>Motor_ID</td><td>选择一个电机读取</td></tr>
@@ -273,6 +283,13 @@ Motor_ID可选参数 MOTOR_ID_ML/MOTOR_ID_MR</td></tr>
 
 #### Get_Velocity_From_Encoder(int encoder_left, int encoder_right);
 返回左右轮的转速, 单位为mm/s
+
+<div class="notice">
+    <p>
+        此函数默认是以5ms作为测速周期, 对应着宏定义中的 Control_Frequency=200 (T=1/f)
+    </p>
+</div>
+
 
 <table border="1">
 <tr><th>参数</th><th>类型</th><th>注释</th></tr>
