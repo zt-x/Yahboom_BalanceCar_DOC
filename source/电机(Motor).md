@@ -120,6 +120,7 @@
 <div class="notice">
     <p>1. 务必先执行Balance_Motor_Init(),再执行Balance_PWM_Init()</p>
     <p>2. 驱动电机时,请记得打开小车电源开关</p>
+    <p>3. 如果要使用编码器Encoder, 请确保初始化电机的函数要在初始化编码器定时器的函数<b>之前</b>调用!!</p>
 </div>
 
 <div class="code-container">

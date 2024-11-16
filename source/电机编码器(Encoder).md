@@ -103,6 +103,10 @@ typedef enum {<br>
 
 ### 方法
 
+<div class="notice">
+    <p>如果要使用电机Motor, 请确保初始化电机的函数要在初始化编码器定时器的函数<b>之前</b>调用!!</p>
+</div>
+
 #### Encoder_Init_TIM3(void)
 初始化TIM3定时器
 <table border="1">
