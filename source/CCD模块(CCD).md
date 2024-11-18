@@ -27,7 +27,7 @@
 </style>
 ## CCD模块(CCD) 
 
-*TODO*
+* *
 
 ### 全局变量
 <table border="1">

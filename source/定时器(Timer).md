@@ -27,7 +27,7 @@
 </style>
 ## 定时器(Timer) 
 
-*TODO*
+* *
 
 ### 全局变量
 <table border="1">
