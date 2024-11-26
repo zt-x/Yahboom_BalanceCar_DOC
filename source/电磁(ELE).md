@@ -221,7 +221,7 @@
 
     table {font-size:12px;max-width:80%;min-width:30%;border-width: 0px;border-collapse: collapse;margin-bottom: 20px;box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;}
     th {font-size:12px;border-width: 1px;padding: 8px;text-align:left;}
-    td {font-size:12px;border-width: 1px;padding: 8px;}
+        td {font-size:12px;border-width: 1px;padding: 8px; vertical-align: middle;font-size: 16px;}
 </style>
 ## 电磁(ELE) 
 
